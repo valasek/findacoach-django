@@ -1,0 +1,7 @@
+# PostgreSQL
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=findacoach
+POSTGRES_USER=MIuSYDBeCpdxERBlmSmAVdsxerZJSzTN
+POSTGRES_PASSWORD=XNVYlNeaXa1a8lRbo5D1MY72EAPmXbtwzx9EsRXanO1o05A0TmsTfEFcWkihDdEA

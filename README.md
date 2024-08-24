@@ -59,6 +59,7 @@ The following details how to deploy this application.
 See detailed [cookiecutter-django Docker documentation](http://cookiecutter-django.readthedocs.io/en/latest/deployment-with-docker.html).
 
 ## Tips and Tricks
+
 Open local terminal:
 Using the command palette (default ctrl+shift+p/cmd+shift+p), there is an option
 Terminal: Create New Integrated Terminal (local)
@@ -66,6 +67,7 @@ Terminal: Create New Integrated Terminal (local)
 ## Roadmap
 
 ### Next steps
+
 - Odstránenie chýb v GITe - pre-commit hook
 - Nasadenie na prod
 - Kúpa domény a presmerovanie domény
@@ -98,4 +100,5 @@ Lekcia:
 - domáca úloha
 
 ### Future
+
 - lokalizácia rozhrania

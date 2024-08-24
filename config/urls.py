@@ -20,7 +20,7 @@ urlpatterns = [
     path("users/", include("findacoach.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
-    path('coach/', include("findacoach.coach.urls", namespace="coach")),
+    path("coach/", include("findacoach.coach.urls", namespace="coach")),
     # Media files
     *static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT),
 ]

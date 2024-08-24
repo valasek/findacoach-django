@@ -57,3 +57,40 @@ The following details how to deploy this application.
 ### Docker
 
 See detailed [cookiecutter-django Docker documentation](http://cookiecutter-django.readthedocs.io/en/latest/deployment-with-docker.html).
+
+## Roadmap
+
+### Next steps
+- Odstránenie chýb v GITe - pre-commit hook
+- Nasadenie na prod
+- Kúpa domény a presmerovanie domény
+- Sprovoznenie admina
+- Vytvorenie datového modelu - návrh a realizácia
+- Switch na sqlite
+
+#### Datový model
+
+Mentor
+
+- meno a priezvisko
+- odmentorovaných hodín
+
+Klient:
+
+- objednané, dodané hodiny
+- datumy a časy lekcií
+- ďalšia lekcia, zadanie vš. lekcií
+- celkové ciele
+- posledná prebraná téma
+- domáca úloha
+- plán na ďalšiu tému
+
+Lekcia:
+
+- dátum a čas
+- poznámky
+- plán na ďalšiu lekciu
+- domáca úloha
+
+### Future
+- lokalizácia rozhrania

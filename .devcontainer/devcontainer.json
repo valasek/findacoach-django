@@ -64,6 +64,5 @@
     // Uncomment the next line if you want to keep your containers running after VS Code shuts down.
     // "shutdownAction": "none",
     // Uncomment the next line to run commands after the container is created.
-    "postCreateCommand": "cat .devcontainer/bashrc.override.sh >> ~/.bashrc",
-    "postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}"
+    "postCreateCommand": "git config --global --add safe.directory ${containerWorkspaceFolder} && cat .devcontainer/bashrc.override.sh >> ~/.bashrc"
 }

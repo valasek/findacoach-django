@@ -8,16 +8,13 @@ Focus on coaching and Find a Coach will manage your coaching sessions.
 
 - Nasadenie na prod
 - Kúpa domény a presmerovanie domény
-- Sprovoznenie admina
+- Local dev env
+  - Create super user - https://stackoverflow.com/questions/30027203/create-django-super-user-in-a-docker-container-without-inputting-password
+  - seed some data
 - Vytvorenie datového modelu - návrh a realizácia
 - Switch na sqlite
 
 #### Datový model
-
-Mentor
-
-- meno a priezvisko
-- odmentorovaných hodín
 
 Klient:
 
@@ -44,6 +41,9 @@ Lekcia:
 - lokalizácia rozhrania
 
 ## Tips and Tricks
+
+Run the server in the dev container terminal
+'./manage.py runserver_plus 0.0.0.0:8000'
 
 Open local terminal:
 

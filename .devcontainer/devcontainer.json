@@ -1,6 +1,7 @@
 // For format details, see https://containers.dev/implementors/json_reference/
 {
     "name": "findacoach_dev",
+    // access postgres from VS Code / https://stackoverflow.com/questions/61696029/docker-in-docker-setup-with-vscode-dev-containers-how-to-access-running-docker
     "dockerComposeFile": [
         "../docker-compose.local.yml"
     ],

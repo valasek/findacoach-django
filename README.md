@@ -1,40 +1,15 @@
 # Find a Coach
 
-Focus on coaching and Find a Coach will manage your coaching sessions.
+Focus on coaching and Find a Coach will manage all what you need: your coaching session times and notes and clients.
 
 ## Roadmap
 
 ### Next steps
-
+- pripojenie na PG / https://stackoverflow.com/questions/77196497/how-to-connect-from-vs-code-dev-container-to-postgres-in-docker
 - Nasadenie na prod
 - Kúpa domény a presmerovanie domény
-- Local dev env
-  - Create super user - https://stackoverflow.com/questions/30027203/create-django-super-user-in-a-docker-container-without-inputting-password
-  - seed some data
-- Vytvorenie datového modelu - návrh a realizácia
 - Switch na sqlite
 
-#### Datový model
-
-Klient:
-
-- odkaz na mentora
-- objednané, dodané hodiny
-- datumy a časy lekcií
-- ďalšia lekcia, zadanie vš. lekcií
-- celkové ciele
-- posledná prebraná téma
-- domáca úloha
-- plán na ďalšiu tému
-
-Lekcia:
-
-- odkaz na klienta
-- odkaz na mentora
-- dátum a čas
-- poznámky
-- plán na ďalšiu lekciu
-- domáca úloha
 
 #### Future
 
@@ -43,7 +18,8 @@ Lekcia:
 ## Tips and Tricks
 
 Run the server in the dev container terminal
-'./manage.py runserver_plus 0.0.0.0:8000'
+'./manage.py runserver 0.0.0.0:8000'
+'./manage.py runserver_plus 0.0.0.0:8000' # does not work at the moment
 
 Open local terminal:
 

@@ -1,9 +1,11 @@
 # Create your models here.
 """DB models"""
 
+from django.conf import settings
 from django.core.validators import MaxValueValidator
 from django.core.validators import MinValueValidator
 from django.db import models
+from django.db.models import Sum
 from phonenumber_field.modelfields import PhoneNumberField
 
 
@@ -19,25 +21,42 @@ class TimeStampedModel(models.Model):
         abstract = True
 
 
-class Coach(TimeStampedModel):
+class Profile(TimeStampedModel):
     """Coach model, coach is a user as well"""
 
-    name = models.CharField("Full Name", max_length=254, blank=True)
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="coach_user",
+        verbose_name="User",
+    )
+    is_coach = models.BooleanField(default=True)
     # odmentorovanych hodnín - property
 
     class Meta:
         """Meta class"""
 
-        verbose_name_plural = "choaches"
-        ordering = ["name"]
+        verbose_name_plural = "profiles"
+        # ordering = ["name"]  # noqa: ERA001
 
     def __str__(self):
-        return self.name
+        return f"{self.user.email}, {self.is_coach}"
+
+    @classmethod
+    def total_coached_hours(cls, coach):
+        return Client.objects.filter(coach_id=coach).aggregate(
+            total_hours=Sum("hours_delivered"),
+        )["total_hours"]
 
 
 class Client(TimeStampedModel):
     """Client model"""
 
+    coach = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        verbose_name="Coach",
+    )
     name = models.CharField("Full Name", max_length=254, blank=False)
     email = models.EmailField(
         "Email address",
@@ -54,6 +73,7 @@ class Client(TimeStampedModel):
         max_digits=5,
         decimal_places=1,
         blank=True,
+        null=True,
         validators=[MinValueValidator(0), MaxValueValidator(999.5)],
         help_text="Hours in 0.5 steps",
     )
@@ -62,6 +82,7 @@ class Client(TimeStampedModel):
         max_digits=5,
         decimal_places=1,
         blank=True,
+        null=True,
         validators=[MinValueValidator(0), MaxValueValidator(999.5)],
         help_text="Hours in 0.5 steps",
     )
@@ -69,11 +90,6 @@ class Client(TimeStampedModel):
         "Coaching goal",
         blank=True,
         help_text="Client goal as per ICF definition",
-    )
-    next_session_datetime = models.DateTimeField(
-        "Next session date and time",
-        null=True,
-        blank=True,
     )
 
     class Meta:
@@ -89,18 +105,7 @@ class Client(TimeStampedModel):
 class CoachingSession(TimeStampedModel):
     """Coaching session model"""
 
-    client = models.ForeignKey(
-        Client,
-        on_delete=models.CASCADE,
-        related_name="session_client",
-        verbose_name="Client",
-    )
-    coach = models.ForeignKey(
-        Coach,
-        on_delete=models.CASCADE,
-        related_name="session_coach",
-        verbose_name="Coach",
-    )
+    client = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name="Client")
     datetime = models.DateTimeField("Date and time")
     duration = models.DecimalField(
         "Duration",
@@ -121,4 +126,28 @@ class CoachingSession(TimeStampedModel):
         # indexes = [models.Index(fields=["email"])]  # noqa: ERA001
 
     def __str__(self):
-        return f"{self.coach}, {self.client}, {self.datetime}"
+        return f"{self.datetime}, {self.duration}, {self.realized}"
+
+    @classmethod
+    def upcomming_sessions(cls, coach, session_count):
+        """Returns upcomming session_count sessions per coach for all clients"""
+        coaching_sessions = CoachingSession.objects.filter(
+            client__coach=coach,
+            realized=False,
+        ).order_by("datetime")[:session_count]
+        upcomming_sessions = []
+        for coaching_session in coaching_sessions:
+            item = {
+                "name": coaching_session.client.name,
+                "email": coaching_session.client.email,
+                "phone": coaching_session.client.phone,
+                "hours_delivered": coaching_session.client.hours_delivered,
+                "hours_ordered": coaching_session.client.hours_ordered,
+                "datetime": coaching_session.datetime,
+                "duration": coaching_session.duration,
+                "homework": coaching_session.homework,
+                "note": coaching_session.note,
+            }
+            upcomming_sessions.append(item)
+
+        return upcomming_sessions

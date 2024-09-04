@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% load humanize %}
+
+{% block content %}
+  <p>{{ coach }}, odkoučovaných hodín: {{ total_coached_hours|intcomma }} h</p>
+  <h2>Najbližšie stretnutia</h2>
+  {% for upcomming_session in upcomming_sessions %}
+    <p>
+      <a href="#">{{ upcomming_session.name }}</a>, <a href="mailto:{{ upcomming_session.email }}">{{ upcomming_session.email }}</a>, {{ upcomming_session.phone }},
+      {{ upcomming_session.hours_delivered }}/{{ upcomming_session.hours_ordered }}
+      dt:{{ upcomming_session.datetime }} du:{{ upcomming_session.duration }} n:{{ upcomming_session.note|truncatechars:50 }} h:{{ upcomming_session.homework|truncatechars:50 }}
+    </p>
+  {% endfor %}
+  <a href="{% url 'coach:client_detail' pk=1 %}">Show client</a>,
+  <a href="{% url 'coach:client_create' %}">New client</a>,
+  <a href="{% url 'coach:client_list' %}">List clients</a>,
+  <a href="{% url 'coach:client_update' pk=1 %}">Update client</a>,
+  <a href="{% url 'coach:client_archive' pk=1 %}">archive client</a>
+  <h2>Ostatne</h2>
+  Pridať klienta
+  Ďalšia session dátum a čas, meno klienta, cieľ lekcie, domáca úloha
+  Zoznam klientov s preklikom na klienta
+  Klient - domácí úloha, plán na ďalšiu hodinu a predchádzajúca hodina
+{% endblock content %}

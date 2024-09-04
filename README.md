@@ -5,6 +5,7 @@ Focus on coaching and Find a Coach will manage all what you need: your coaching 
 ## Roadmap
 
 ### Next steps
+- list view / https://enzircle.hashnode.dev/responsive-table-with-django-and-htmx
 - pripojenie na PG / https://stackoverflow.com/questions/77196497/how-to-connect-from-vs-code-dev-container-to-postgres-in-docker
 - Nasadenie na prod
 - Kúpa domény a presmerovanie domény
@@ -18,6 +19,9 @@ Focus on coaching and Find a Coach will manage all what you need: your coaching 
 ## Tips and Tricks
 
 Run the server in the dev container terminal
+'./manage.py makemigrations'
+'./manage.py migrate'
+'$./manage.py createsuperuser'
 './manage.py runserver 0.0.0.0:8000'
 './manage.py runserver_plus 0.0.0.0:8000' # does not work at the moment
 

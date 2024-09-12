@@ -105,3 +105,15 @@ class CoachingSessionCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateV
         if "client_id" in self.kwargs:
             kwargs["initial"] = {"client": self.kwargs["client_id"]}
         return kwargs
+
+
+class CoachingSessionUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    model = CoachingSession
+    form_class = CoachingSessionForm
+    template_name = "coachingsession/session_form.html"
+    success_message = "Session sucessfully updated"
+    success_url = reverse_lazy("coach:dashboard")
+
+    def form_valid(self, form):
+        form.instance.coach = self.request.user
+        return super().form_valid(form)

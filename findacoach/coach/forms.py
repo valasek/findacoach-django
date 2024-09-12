@@ -54,8 +54,6 @@ class ClientForm(forms.ModelForm):
                 Column("archived", css_class="col-md-2"),
             ),
         )
-        if "initial" in kwargs and "coach" in kwargs["initial"]:
-            self.fields["coach"].initial = kwargs["initial"]["coach"]
 
 
 class CoachingSessionForm(forms.ModelForm):
@@ -87,5 +85,3 @@ class CoachingSessionForm(forms.ModelForm):
                 Column("homework", css_class="col-md-6"),
             ),
         )
-        if "initial" in kwargs and "client" in kwargs["initial"]:
-            self.fields["client"].initial = kwargs["initial"]["client"]

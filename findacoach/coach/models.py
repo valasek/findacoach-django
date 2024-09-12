@@ -153,13 +153,14 @@ class CoachingSession(TimeStampedModel):
         upcomming_sessions = []
         for coaching_session in coaching_sessions:
             item = {
-                "id": coaching_session.client.id,
+                "client_id": coaching_session.client.id,
                 "name": coaching_session.client.name,
                 "email": coaching_session.client.email,
                 "phone": coaching_session.client.phone,
                 "coaching_goal": coaching_session.client.coaching_goal,
                 "hours_delivered": coaching_session.client.hours_delivered,
                 "hours_ordered": coaching_session.client.hours_ordered,
+                "session_id": coaching_session.id,
                 "date": coaching_session.date,
                 "time": coaching_session.time,
                 "duration": coaching_session.duration,

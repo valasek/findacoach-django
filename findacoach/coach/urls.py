@@ -7,6 +7,7 @@ from .views import ClientDetailView
 from .views import ClientListView
 from .views import ClientUpdateView
 from .views import CoachingSessionCreateView
+from .views import CoachingSessionUpdateView
 from .views import index
 
 app_name = "coach"
@@ -21,6 +22,11 @@ urlpatterns = [
         "coachingsession/<int:client_id>/create",
         CoachingSessionCreateView.as_view(),
         name="coachingsession_create",
+    ),
+    path(
+        "coachingsession/<int:pk>/update",
+        CoachingSessionUpdateView.as_view(),
+        name="coachingsession_update",
     ),
     path(
         "favicon.svg",

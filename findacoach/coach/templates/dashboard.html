@@ -19,24 +19,25 @@
         </svg>
         <b>{{ upcomming_session.date|date:"D, M d. Y" }} - {{ upcomming_session.time }}
         ( {{ upcomming_session.duration }} hour{{ upcomming_session.duration|pluralize }} )</b>
-        »  <a href="{% url 'coach:client_detail' pk=upcomming_session.id %}">{{ upcomming_session.name }}</a> • <a href="mailto:{{ upcomming_session.email }}">{{ upcomming_session.email }}</a> • {{ upcomming_session.phone }}
-        • {{ upcomming_session.hours_delivered }} / {{ upcomming_session.hours_ordered }}
+        ⏺  <a href="{% url 'coach:client_detail' pk=upcomming_session.client_id %}">{{ upcomming_session.name }}</a> ⏺ {{ upcomming_session.hours_delivered }} / {{ upcomming_session.hours_ordered }} ⏺ <a href="mailto:{{ upcomming_session.email }}">{{ upcomming_session.email }}</a> ⏺ {{ upcomming_session.phone }}
         <details>
-          <summary>Coaching goal</summary>
+          <summary>Coaching Goal</summary>
           <p>{{ upcomming_session.coaching_goal }}</p>
+          {% include "partials/button_edit_client.html" with client_id=upcomming_session.client_id button_text="Edit Coaching Goal" %}
         </details>
         <details>
-          <summary>Notes from the last session</summary>
+          <summary>Last Session Notes</summary>
           <p>{{ upcomming_session.note }}</p>
+          {% include "partials/button_edit_last_session.html" with session_id=upcomming_session.session_id button_text="Edit Notes" %}
         </details>
         <details>
-          <summary>Homework from the last session</summary>
+          <summary>Last Session Homework</summary>
           <p>{{ upcomming_session.homework }}</p>
+          {% include "partials/button_edit_last_session.html" with session_id=upcomming_session.session_id button_text="Edit Homework" %}
         </details>
         <br />
         <div class="d-flex justify-content-between align-items-center mb-3">
-          {% include "partials/button_start_session.html" with client_id=upcomming_session.id %}
-          {% include "partials/button_view_client.html" %}
+          {% include "partials/button_start_session.html" with client_id=upcomming_session.client_id %}
         </div>
       </p>
     {% endfor %}

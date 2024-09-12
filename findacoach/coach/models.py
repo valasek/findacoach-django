@@ -157,6 +157,7 @@ class CoachingSession(TimeStampedModel):
                 "name": coaching_session.client.name,
                 "email": coaching_session.client.email,
                 "phone": coaching_session.client.phone,
+                "coaching_goal": coaching_session.client.coaching_goal,
                 "hours_delivered": coaching_session.client.hours_delivered,
                 "hours_ordered": coaching_session.client.hours_ordered,
                 "date": coaching_session.date,

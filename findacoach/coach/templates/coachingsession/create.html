@@ -7,6 +7,6 @@
         action="{% url 'coach:coachingsession_create' client_id=client_id %}">
     {% csrf_token %}
     {% crispy form form.helper %}
-    <button type="submit" class="btn btn-success">Uložit</button>
+    <button type="submit" class="btn btn-success">Save</button>
   </form>
 {% endblock content %}

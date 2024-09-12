@@ -16,15 +16,23 @@
               <p>
                 <a href="mailto:{{ client.email }}">{{ client.email }}</a>
               </p>
-              <p>{{ client.phone }}</p>
             </div>
             <div class="col-12 col-md-4">
-              <p>{{ client.company }}</p>
-              <p>{{ client.position }}</p>
+              <p>{{ client.company }}, {{ client.position }}</p>
             </div>
             <div class="col-12 col-md-4">
               <p>Coaching Hours: {{ client.hours_ordered }}/{{ client.hours_delivered }}</p>
-              <p>Coaching Goal: {{ client.coaching_goal }}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-4">
+              <p>{{ client.phone }}</p>
+            </div>
+            <div class="col-12 col-md-8">
+              <details>
+                <summary>Coaching goal</summary>
+                <p>{{ client.coaching_goal }}</p>
+              </details>
             </div>
           </div>
           <div class="d-flex justify-content-between">

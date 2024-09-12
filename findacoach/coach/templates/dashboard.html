@@ -19,8 +19,12 @@
         </svg>
         <b>{{ upcomming_session.date|date:"D, M d. Y" }} - {{ upcomming_session.time }}
         ( {{ upcomming_session.duration }} hour{{ upcomming_session.duration|pluralize }} )</b>
-        »  <a href="#">{{ upcomming_session.name }}</a> • <a href="mailto:{{ upcomming_session.email }}">{{ upcomming_session.email }}</a> • {{ upcomming_session.phone }}
+        »  <a href="{% url 'coach:client_detail' pk=upcomming_session.id %}">{{ upcomming_session.name }}</a> • <a href="mailto:{{ upcomming_session.email }}">{{ upcomming_session.email }}</a> • {{ upcomming_session.phone }}
         • {{ upcomming_session.hours_delivered }} / {{ upcomming_session.hours_ordered }}
+        <details>
+          <summary>Coaching goal</summary>
+          <p>{{ upcomming_session.coaching_goal }}</p>
+        </details>
         <details>
           <summary>Notes from the last session</summary>
           <p>{{ upcomming_session.note }}</p>

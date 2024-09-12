@@ -42,8 +42,8 @@ class ClientForm(forms.ModelForm):
                 Column("name", css_class="col-md-2"),
                 Column("email", css_class="col-md-2"),
                 Column("phone", css_class="col-md-2"),
-                Column("company", css_class="col-md-2"),
-                Column("position", css_class="col-md-2"),
+                Column("company", css_class="col-md-3"),
+                Column("position", css_class="col-md-3"),
             ),
             Row(
                 Column("coaching_goal", css_class="col-md-12"),

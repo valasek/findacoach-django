@@ -8,7 +8,7 @@ Focus on coaching and Find a Coach will manage all what you need: your coaching 
 
 ## Tips and Tricks
 
-- pripojenie na PG / https://stackoverflow.com/questions/77196497/how-to-connect-from-vs-code-dev-container-to-postgres-in-docker
+- [pripojenie na PG](https://stackoverflow.com/questions/77196497/how-to-connect-from-vs-code-dev-container-to-postgres-in-docker)
 - bezpecnost - kontrola na editáciu iných než svojich objektov priamo, cez URL
 
 Run the server in the dev container terminal

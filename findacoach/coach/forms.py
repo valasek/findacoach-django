@@ -59,7 +59,7 @@ class ClientForm(forms.ModelForm):
 class CoachingSessionForm(forms.ModelForm):
     class Meta:
         model = CoachingSession
-        fields = ["client", "date", "time", "duration", "note", "homework", "realized"]
+        fields = ["date", "time", "duration", "note", "homework", "realized"]
         widgets = {
             "date": forms.DateInput(attrs={"type": "date"}),
             "time": forms.TimeInput(attrs={"type": "time"}),
@@ -74,7 +74,6 @@ class CoachingSessionForm(forms.ModelForm):
         self.helper.form_tag = False
         self.helper.layout = Layout(
             Row(
-                Column("client", css_class="col-md-2"),
                 Column("date", css_class="col-md-2"),
                 Column("time", css_class="col-md-2"),
                 Column("duration", css_class="col-md-2"),

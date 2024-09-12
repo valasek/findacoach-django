@@ -149,6 +149,7 @@ class CoachingSession(TimeStampedModel):
         coaching_sessions = CoachingSession.objects.filter(
             client__coach=coach,
             realized=False,
+            client__archived=False,
         ).order_by("date", "time")[:session_count]
         upcomming_sessions = []
         for coaching_session in coaching_sessions:

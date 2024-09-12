@@ -96,7 +96,7 @@ class ClientArchiveView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
 class CoachingSessionCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = CoachingSession
     form_class = CoachingSessionForm
-    template_name = "coachingsession/create.html"
+    template_name = "coachingsession/session_form.html"
     success_message = "Coaching session sucessfully saved"
     success_url = reverse_lazy("coach:dashboard")
 
@@ -106,6 +106,18 @@ class CoachingSessionCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateV
             kwargs["initial"] = {"client": self.kwargs["client_id"]}
         return kwargs
 
+    def form_valid(self, form):
+        if "client_id" in self.kwargs:
+            client_id = self.kwargs["client_id"]
+            try:
+                client = Client.objects.get(id=client_id)
+                form.instance.client = client
+            except Client.DoesNotExist:
+                messages.error("Client found")
+        else:
+            messages.error("Client ID missing")
+        return super().form_valid(form)
+
 
 class CoachingSessionUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = CoachingSession
@@ -113,7 +125,3 @@ class CoachingSessionUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateV
     template_name = "coachingsession/session_form.html"
     success_message = "Session sucessfully updated"
     success_url = reverse_lazy("coach:dashboard")
-
-    def form_valid(self, form):
-        form.instance.coach = self.request.user
-        return super().form_valid(form)

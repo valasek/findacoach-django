@@ -4,30 +4,12 @@ Focus on coaching and Find a Coach will manage all what you need: your coaching 
 
 ## Roadmap
 
-### Next steps
-
-- create session
-- menu color and footer at the bottom of the page, fix move
-- fix favicon
-
-#### Future
-
-- add invite link
-- export/import clients
-- add more coaches
-- add tests
-- list view / https://enzircle.hashnode.dev/responsive-table-with-django-and-htmx
-- Nasadenie na prod
-- Kúpa domény a presmerovanie domény
-- pripojenie na PG / https://stackoverflow.com/questions/77196497/how-to-connect-from-vs-code-dev-container-to-postgres-in-docker
-- bezpecnost - kontrola na editáciu iných než svojich objektov priamo, cez URL
-
-#### Out of scope
-
-- Switch na sqlite
-- lokalizácia rozhrania
+[Roadmap](https://github.com/users/valasek/projects/1)
 
 ## Tips and Tricks
+
+- pripojenie na PG / https://stackoverflow.com/questions/77196497/how-to-connect-from-vs-code-dev-container-to-postgres-in-docker
+- bezpecnost - kontrola na editáciu iných než svojich objektov priamo, cez URL
 
 Run the server in the dev container terminal
 './manage.py makemigrations'

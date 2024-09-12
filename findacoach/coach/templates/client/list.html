@@ -4,18 +4,8 @@
   <div class="container my-2">
     <div class="d-flex justify-content-between align-items-center mb-3">
       <h2>Clients</h2>
-      <a href="{% url 'coach:client_create' %}"
-         class="btn btn-primary d-flex align-items-center justify-content-center">
-        <svg xmlns="http://www.w3.org/2000/svg"
-             width="16"
-             height="16"
-             fill="currentColor"
-             class="bi bi-plus-circle"
-             viewBox="0 0 16 16">
-          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-          <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
-        </svg>
-      </a>
+      Show archived
+      {% include "../partials/button_new_client.html" with coach_id=user.id %}
     </div>
     {% for client in object_list %}
       <div class="card mb-3">
@@ -33,34 +23,52 @@
               <p>{{ client.position }}</p>
             </div>
             <div class="col-12 col-md-4">
-              <p>Hours Ordered: {{ client.hours_ordered }}</p>
-              <p>Hours Delivered: {{ client.hours_delivered }}</p>
-              <p>Coaching Goal: Improve project management skills</p>
+              <p>Coaching Hours: {{ client.hours_ordered }}/{{ client.hours_delivered }}</p>
+              <p>Coaching Goal: {{ client.coaching_goal }}</p>
             </div>
           </div>
-          <div class="d-flex justify-content-start">
-            <a href="{% url 'coach:client_update' pk=client.id %}"
-               class="btn btn-outline-primary d-flex align-items-center justify-content-center mx-2">
-              <svg xmlns="http://www.w3.org/2000/svg"
-                   width="16"
-                   height="16"
-                   fill="currentColor"
-                   class="bi bi-pencil"
-                   viewBox="0 0 16 16">
-                <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
-              </svg>
-            </a>
-            <a href="{% url 'coach:client_archive' pk=client.id %}"
-               class="btn btn-outline-danger d-flex align-items-center justify-content-center mx-2">
-              <svg xmlns="http://www.w3.org/2000/svg"
-                   width="16"
-                   height="16"
-                   fill="currentColor"
-                   class="bi bi-archive"
-                   viewBox="0 0 16 16">
-                <path d="M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V5a1 1 0 0 1-1-1zm2 3v7.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5zm13-3H1v2h14zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5" />
-              </svg>
-            </a>
+          <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-start">
+              <a href="{% url 'coach:client_archive' pk=client.id %}"
+                 class="btn btn-outline-primary d-flex align-items-center justify-content-center mx-2"
+                 title="View previous sessions">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     width="16"
+                     height="16"
+                     fill="currentColor"
+                     class="bi bi-calendar-week"
+                     viewBox="0 0 16 16">
+                  <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z" />
+                  <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
+                </svg>
+              </a>
+            </div>
+            <div class="d-flex justify-content-end">
+              <a href="{% url 'coach:client_update' pk=client.id %}"
+                 class="btn btn-outline-primary d-flex align-items-center justify-content-center mx-2"
+                 title="Edit client">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     width="16"
+                     height="16"
+                     fill="currentColor"
+                     class="bi bi-pencil"
+                     viewBox="0 0 16 16">
+                  <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
+                </svg>
+              </a>
+              <a href="{% url 'coach:client_archive' pk=client.id %}"
+                 class="btn btn-outline-danger d-flex align-items-center justify-content-center mx-2"
+                 title="Archive client">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     width="16"
+                     height="16"
+                     fill="currentColor"
+                     class="bi bi-archive"
+                     viewBox="0 0 16 16">
+                  <path d="M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V5a1 1 0 0 1-1-1zm2 3v7.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5zm13-3H1v2h14zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5" />
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -68,5 +76,4 @@
       <li>No clients yet. Create one.</li>
     {% endfor %}
   </div>
-  <hr />
 {% endblock content %}

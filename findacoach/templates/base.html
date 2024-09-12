@@ -8,7 +8,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <title>
       {% block title %}
-        findacoach
+        Find a Coach
       {% endblock title %}
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -19,8 +19,8 @@
     {% block css %}
       <!-- Latest compiled and minified Bootstrap CSS -->
       <link rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css"
-            integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA=="
+            href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css"
+            integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg=="
             crossorigin="anonymous"
             referrerpolicy="no-referrer" />
       <!-- Your stuff: Third-party CSS libraries go here -->
@@ -32,9 +32,8 @@
     {# Placed at the top of the document so pages load faster with defer #}
     {% block javascript %}
       <!-- Bootstrap JS -->
-      <script defer
-              src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js"
-              integrity="sha512-1/RvZTcCDEUjY/CypiMz+iqqtaoQfAITmNSJY17Myp4Ms5mdxPS5UV7iOfdZoxcGhzFbOm6sntTKJppjvuhg4g=="
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"
+              integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg=="
               crossorigin="anonymous"
               referrerpolicy="no-referrer"></script>
       <!-- Your stuff: Third-party javascript libraries go here -->
@@ -42,7 +41,7 @@
       <script defer src="{% static 'js/project.js' %}"></script>
     {% endblock javascript %}
   </head>
-  <body class="{% block bodyclass %}{% endblock bodyclass %}">
+  <body class="{% block bodyclass %}{% endblock bodyclass %} bg-paper">
     {% block body %}
       <div class="mb-1">
         <nav class="navbar navbar-expand-md navbar-light bg-light">
@@ -56,39 +55,150 @@
                     aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand" href="{% url 'home' %}">Find a Coach</a>
+            <a class="navbar-brand" href="{% url 'home' %}">
+              <svg fill="#000000"
+                   width="25"
+                   height="25"
+                   viewBox="0 0 30 30"
+                   xmlns="http://www.w3.org/2000/svg">
+                <path d="M23.5 4c.446 0 .67.543.35.854l-.995.993c-.447.466-1.166-.257-.702-.702l.993-.994c.094-.095.22-.15.354-.15zm-17 0c-.446 0-.67.543-.35.854l.995.993c.447.466 1.17-.253.702-.702l-.993-.994C6.76 4.056 6.634 4 6.5 4zm4 25h8c.277 0 .5.223.5.5s-.223.5-.5.5h-8c-.277 0-.5-.223-.5-.5s.223-.5.5-.5zm0-3h8c.277 0 .5.223.5.5s-.223.5-.5.5h-8c-.277 0-.5-.223-.5-.5s.223-.5.5-.5zm4-20c-1.848 0-3.496 1.065-4.65 2.7C8.695 10.338 8 12.558 8 15c0 2.443.695 4.663 1.85 6.3 1.154 1.635 2.802 2.7 4.65 2.7 1.848 0 3.496-1.065 4.65-2.7C20.305 19.662 21 17.442 21 15c0-2.443-.695-4.663-1.85-6.3C17.996 7.066 16.348 6 14.5 6zm0 1c1.465 0 2.817.837 3.834 2.277C19.35 10.717 20 12.747 20 15c0 2.252-.65 4.282-1.666 5.723-.657.93-1.457 1.604-2.334 1.968-.01-1.19-.028-2.297.145-3.213.198-1.06.608-1.88 1.625-2.555.42-.27.228-.923-.27-.922-.1 0-.195.03-.277.086-1.238.824-1.824 1.972-2.055 3.205-.216 1.15-.176 2.392-.168 3.673-.24.037-.735.037-1 0 .008-1.28.048-2.522-.168-3.672-.23-1.232-.817-2.38-2.055-3.204C11.695 16.03 11.6 16 11.5 16c-.498 0-.69.653-.27.922 1.017.676 1.427 1.495 1.625 2.555.173.916.154 2.024.145 3.214-.877-.363-1.677-1.037-2.334-1.967C9.65 19.283 9 17.253 9 15c0-2.252.65-4.282 1.666-5.723C11.683 7.837 13.036 7 14.5 7zm10 7h2c.277 0 .5.223.5.5s-.223.5-.5.5h-2c-.277 0-.5-.223-.5-.5s.223-.5.5-.5zM15 .5v2c0 .277-.223.5-.5.5s-.5-.223-.5-.5v-2c0-.277.223-.5.5-.5s.5.223.5.5zM2.5 14h2c.277 0 .5.223.5.5s-.223.5-.5.5h-2c-.277 0-.5-.223-.5-.5s.223-.5.5-.5z" />
+              </svg>
+            Find a Coach</a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                  <a class="nav-link" href="{% url 'coach:dashboard' %}">Dashboard <span class="visually-hidden">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                  <a class="nav-link" href="{% url 'admin:index' %}">Admin <span class="visually-hidden">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                  <a class="nav-link" href="{% url 'home' %}">Home <span class="visually-hidden">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'about' %}">About</a>
-                </li>
                 {% if request.user.is_authenticated %}
                   <li class="nav-item">
-                    <a class="nav-link" href="{% url 'users:detail' request.user.pk %}">{% translate "My Profile" %}</a>
+                    <a class="nav-link  active" href="{% url 'coach:dashboard' %}">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                           width="16"
+                           height="16"
+                           fill="currentColor"
+                           class="bi bi-speedometer2"
+                           viewBox="0 0 16 16">
+                        <path d="M8 4a.5.5 0 0 1 .5.5V6a.5.5 0 0 1-1 0V4.5A.5.5 0 0 1 8 4M3.732 5.732a.5.5 0 0 1 .707 0l.915.914a.5.5 0 1 1-.708.708l-.914-.915a.5.5 0 0 1 0-.707M2 10a.5.5 0 0 1 .5-.5h1.586a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 10m9.5 0a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 1 0 1H12a.5.5 0 0 1-.5-.5m.754-4.246a.39.39 0 0 0-.527-.02L7.547 9.31a.91.91 0 1 0 1.302 1.258l3.434-4.297a.39.39 0 0 0-.029-.518z" />
+                        <path fill-rule="evenodd" d="M0 10a8 8 0 1 1 15.547 2.661c-.442 1.253-1.845 1.602-2.932 1.25C11.309 13.488 9.475 13 8 13c-1.474 0-3.31.488-4.615.911-1.087.352-2.49.003-2.932-1.25A8 8 0 0 1 0 10m8-7a7 7 0 0 0-6.603 9.329c.203.575.923.876 1.68.63C4.397 12.533 6.358 12 8 12s3.604.532 4.923.96c.757.245 1.477-.056 1.68-.631A7 7 0 0 0 8 3" />
+                      </svg>
+                      &nbsp;
+                    Dashboard</a>
                   </li>
                   <li class="nav-item">
-                    {# URL provided by django-allauth/account/urls.py #}
-                    <a class="nav-link" href="{% url 'account_logout' %}">{% translate "Sign Out" %}</a>
+                    <a class="nav-link active" href="{% url 'coach:client_list' %}">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                           width="16"
+                           height="16"
+                           fill="currentColor"
+                           class="bi bi-people"
+                           viewBox="0 0 16 16">
+                        <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1zm-7.978-1L7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002-.014.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0M6.936 9.28a6 6 0 0 0-1.23-.247A7 7 0 0 0 5 9c-4 0-5 3-5 4q0 1 1 1h4.216A2.24 2.24 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816M4.92 10A5.5 5.5 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0m3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4" />
+                      </svg>
+                    Clients <span class="visually-hidden">(current)</span></a>
+                  </li>
+                {% endif %}
+                <li class="nav-item">
+                  <a class="nav-link active" href="{% url 'about' %}">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         width="16"
+                         height="16"
+                         fill="currentColor"
+                         class="bi bi-card-text"
+                         viewBox="0 0 16 16">
+                      <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z" />
+                      <path d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8m0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5" />
+                    </svg>
+                  About</a>
+                </li>
+                {% if request.user.is_authenticated %}
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle"
+                       href="#"
+                       role="button"
+                       data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                           width="16"
+                           height="16"
+                           fill="currentColor"
+                           class="bi bi-person"
+                           viewBox="0 0 16 16">
+                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
+                      </svg>
+                      {{ user.name }}
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a class="dropdown-item" href="{% url 'admin:index' %}">
+                          <svg xmlns="http://www.w3.org/2000/svg"
+                               width="16"
+                               height="16"
+                               fill="currentColor"
+                               class="bi bi-toggles"
+                               viewBox="0 0 16 16">
+                            <path d="M4.5 9a3.5 3.5 0 1 0 0 7h7a3.5 3.5 0 1 0 0-7zm7 6a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5m-7-14a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5m2.45 0A3.5 3.5 0 0 1 8 3.5 3.5 3.5 0 0 1 6.95 6h4.55a2.5 2.5 0 0 0 0-5zM4.5 0h7a3.5 3.5 0 1 1 0 7h-7a3.5 3.5 0 1 1 0-7" />
+                          </svg>
+                        Admin <span class="visually-hidden">(current)</span></a>
+                      </li>
+                      <li>
+                        <hr class="dropdown-divider" />
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="{% url 'users:detail' request.user.pk %}">
+                          <svg xmlns="http://www.w3.org/2000/svg"
+                               width="16"
+                               height="16"
+                               fill="currentColor"
+                               class="bi bi-person-bounding-box"
+                               viewBox="0 0 16 16">
+                            <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5M.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5" />
+                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                          </svg>
+                        {% translate "My Profile" %}</a>
+                      </li>
+                      <li>
+                        {# URL provided by django-allauth/account/urls.py #}
+                        <a class="dropdown-item" href="{% url 'account_logout' %}">
+                          <svg xmlns="http://www.w3.org/2000/svg"
+                               width="16"
+                               height="16"
+                               fill="currentColor"
+                               class="bi bi-box-arrow-right"
+                               viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z" />
+                            <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
+                          </svg>
+                        {% translate "Sign Out" %}</a>
+                      </li>
+                    </ul>
                   </li>
                 {% else %}
                   {% if ACCOUNT_ALLOW_REGISTRATION %}
                     <li class="nav-item">
                       {# URL provided by django-allauth/account/urls.py #}
-                      <a id="sign-up-link" class="nav-link" href="{% url 'account_signup' %}">{% translate "Sign Up" %}</a>
+                      <a id="sign-up-link" class="nav-link" href="{% url 'account_signup' %}">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                             width="16"
+                             height="16"
+                             fill="currentColor"
+                             class="bi bi-plus-square"
+                             viewBox="0 0 16 16">
+                          <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
+                          <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+                        </svg>
+                      {% translate "Sign Up" %}</a>
                     </li>
                   {% endif %}
                   <li class="nav-item">
                     {# URL provided by django-allauth/account/urls.py #}
-                    <a id="log-in-link" class="nav-link" href="{% url 'account_login' %}">{% translate "Sign In" %}</a>
+                    <a id="log-in-link" class="nav-link" href="{% url 'account_login' %}">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                           width="16"
+                           height="16"
+                           fill="currentColor"
+                           class="bi bi-box-arrow-in-right"
+                           viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z" />
+                        <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
+                      </svg>
+                    {% translate "Sign In" %}</a>
                   </li>
                 {% endif %}
               </ul>
@@ -99,7 +209,8 @@
       <div class="container">
         {% if messages %}
           {% for message in messages %}
-            <div class="alert alert-dismissible {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+            <div class="alert alert-dismissible fade show {% if message.tags %}alert-{{ message.tags }}{% endif %}"
+                 role="alert">
               {{ message }}
               <button type="button"
                       class="btn-close"
@@ -115,6 +226,7 @@
         {% endblock main %}
       </div>
     {% endblock body %}
+    {% include '_footer.html' %}
     <!-- /container -->
     {% block modal %}
     {% endblock modal %}

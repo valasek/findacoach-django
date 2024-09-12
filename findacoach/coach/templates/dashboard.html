@@ -3,23 +3,52 @@
 {% load humanize %}
 
 {% block content %}
-  <p>{{ coach }}, odkoučovaných hodín: {{ total_coached_hours|intcomma }} h</p>
-  <h2>Najbližšie stretnutia</h2>
-  {% for upcomming_session in upcomming_sessions %}
-    <p>
-      <a href="#">{{ upcomming_session.name }}</a>, <a href="mailto:{{ upcomming_session.email }}">{{ upcomming_session.email }}</a>, {{ upcomming_session.phone }},
-      {{ upcomming_session.hours_delivered }}/{{ upcomming_session.hours_ordered }}
-      dt:{{ upcomming_session.datetime }} du:{{ upcomming_session.duration }} n:{{ upcomming_session.note|truncatechars:50 }} h:{{ upcomming_session.homework|truncatechars:50 }}
-    </p>
-  {% endfor %}
-  <a href="{% url 'coach:client_detail' pk=1 %}">Show client</a>,
-  <a href="{% url 'coach:client_create' %}">New client</a>,
-  <a href="{% url 'coach:client_list' %}">List clients</a>,
-  <a href="{% url 'coach:client_update' pk=1 %}">Update client</a>,
-  <a href="{% url 'coach:client_archive' pk=1 %}">archive client</a>
-  <h2>Ostatne</h2>
-  Pridať klienta
-  Ďalšia session dátum a čas, meno klienta, cieľ lekcie, domáca úloha
-  Zoznam klientov s preklikom na klienta
-  Klient - domácí úloha, plán na ďalšiu hodinu a predchádzajúca hodina
+  <div class="container">
+    <h2>Your upcomming sessions</h2>
+    {% for upcomming_session in upcomming_sessions %}
+      <hr />
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg"
+             width="16"
+             height="16"
+             fill="currentColor"
+             class="bi bi-calendar-event"
+             viewBox="0 0 16 16">
+          <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z" />
+          <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
+        </svg>
+        <b>{{ upcomming_session.date|date:"D, M d. Y" }} - {{ upcomming_session.time }}
+        ( {{ upcomming_session.duration }} hour{{ upcomming_session.duration|pluralize }} )</b>
+        »  <a href="#">{{ upcomming_session.name }}</a> • <a href="mailto:{{ upcomming_session.email }}">{{ upcomming_session.email }}</a> • {{ upcomming_session.phone }}
+        • {{ upcomming_session.hours_delivered }} / {{ upcomming_session.hours_ordered }}
+        <details>
+          <summary>Notes from the last session</summary>
+          <p>{{ upcomming_session.note }}</p>
+        </details>
+        <details>
+          <summary>Homework from the last session</summary>
+          <p>{{ upcomming_session.homework }}</p>
+        </details>
+        <br />
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          {% include "partials/button_start_session.html" with client_id=upcomming_session.id %}
+          {% include "partials/button_view_client.html" %}
+        </div>
+      </p>
+    {% endfor %}
+    <a href="{% url 'coach:client_update' pk=1 %}">Update client</a>,
+    <a href="{% url 'coach:client_archive' pk=1 %}">archive client</a>
+    <hr />
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      {% include "partials/button_new_client.html" with coach_id=user.id %}
+    </div>
+    Total Coaching Hours: {{ total_coached_hours|intcomma }} hour{{ total_coached_hours|pluralize }}
+    <br />
+    Client{{ active_clients_count|pluralize }}: {{ active_clients_count }}, Archived: {{ archived_clients_count }}
+    <hr />
+    Pridať klienta
+    Ďalšia session dátum a čas, meno klienta, cieľ lekcie, domáca úloha
+    Zoznam klientov s preklikom na klienta
+    Klient - domácí úloha, plán na ďalšiu hodinu a predchádzajúca hodina
+  </div>
 {% endblock content %}

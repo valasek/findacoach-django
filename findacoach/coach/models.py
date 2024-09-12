@@ -5,7 +5,9 @@ from django.conf import settings
 from django.core.validators import MaxValueValidator
 from django.core.validators import MinValueValidator
 from django.db import models
+from django.db.models import Count
 from django.db.models import Sum
+from django.utils import timezone
 from phonenumber_field.modelfields import PhoneNumberField
 
 
@@ -83,6 +85,7 @@ class Client(TimeStampedModel):
         decimal_places=1,
         blank=True,
         null=True,
+        default=0,
         validators=[MinValueValidator(0), MaxValueValidator(999.5)],
         help_text="Hours in 0.5 steps",
     )
@@ -91,6 +94,7 @@ class Client(TimeStampedModel):
         blank=True,
         help_text="Client goal as per ICF definition",
     )
+    archived = models.BooleanField(default=False, blank=False)
 
     class Meta:
         """Meta class"""
@@ -101,12 +105,23 @@ class Client(TimeStampedModel):
     def __str__(self):
         return self.name
 
+    @classmethod
+    def clients_count(cls, coach, archived):
+        return Client.objects.filter(coach_id=coach, archived=archived).aggregate(
+            clients=Count("name"),
+        )["clients"]
+
+
+def current_time():
+    return timezone.now().time()
+
 
 class CoachingSession(TimeStampedModel):
     """Coaching session model"""
 
     client = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name="Client")
-    datetime = models.DateTimeField("Date and time")
+    date = models.DateField("Date", default=timezone.now)
+    time = models.TimeField("Time", default=current_time)
     duration = models.DecimalField(
         "Duration",
         max_digits=3,
@@ -126,7 +141,7 @@ class CoachingSession(TimeStampedModel):
         # indexes = [models.Index(fields=["email"])]  # noqa: ERA001
 
     def __str__(self):
-        return f"{self.datetime}, {self.duration}, {self.realized}"
+        return f"{self.date}, {self.time}, {self.duration}, {self.realized}"
 
     @classmethod
     def upcomming_sessions(cls, coach, session_count):
@@ -134,16 +149,18 @@ class CoachingSession(TimeStampedModel):
         coaching_sessions = CoachingSession.objects.filter(
             client__coach=coach,
             realized=False,
-        ).order_by("datetime")[:session_count]
+        ).order_by("date", "time")[:session_count]
         upcomming_sessions = []
         for coaching_session in coaching_sessions:
             item = {
+                "id": coaching_session.client.id,
                 "name": coaching_session.client.name,
                 "email": coaching_session.client.email,
                 "phone": coaching_session.client.phone,
                 "hours_delivered": coaching_session.client.hours_delivered,
                 "hours_ordered": coaching_session.client.hours_ordered,
-                "datetime": coaching_session.datetime,
+                "date": coaching_session.date,
+                "time": coaching_session.time,
                 "duration": coaching_session.duration,
                 "homework": coaching_session.homework,
                 "note": coaching_session.note,
